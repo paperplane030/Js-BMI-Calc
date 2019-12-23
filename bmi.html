@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="./css/all.css">
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC:300,400,500&display=swap&subset=chinese-traditional" rel="stylesheet">
+  <title>Document</title>
+</head>
+<body>
+  <div class="header">
+    <div class="bmi-icon">
+      <img src="./img/BMICLogo.png" alt="">
+    </div>
+    <div class="inputarea">
+      <label for="height">身高 <small>cm</small></label>
+      <input type="text" id="height" placeholder="請輸入身高">
+      <label for="weight">體重 <small>kg</small></label>
+      <input type="text" id="weight" placeholder="請輸入體重">
+    </div>
+    <div class="btnarea">
+      <button class="submitBtn">看結果</button>
+      <button class="resetBtn"><img src="./img/icons_loop.png" alt=""></button>
+    </div>
+  </div>
+
+  <div class="content">
+    <h2>BMI 紀錄</h2>
+    <ul class="bmiList">
+      <li>
+        <span>理想</span>  
+        <small>BMI</small><strong>20.90</strong>
+        <small>weight</small><strong>70kg</strong>
+        <small>height</small><strong>180cm</strong>
+        <small>23-12-2019</small>
+      </li>
+      <li>
+        <span>理想</span> 
+        <small>BMI</small><strong>20.90</strong>
+        <small>weight</small><strong>70kg</strong>
+        <small>height</small><strong>180cm</strong>
+        <small>23-12-2019</small>
+      </li>
+    </ul>
+  </div>
+
+  <div class="footer">
+    <img src="./img/BMICLogo.png" alt="">
+  </div>
+  <script>
+    var height =["180"];
+    var weight =["70"];
+    var BMI =[];
+    var date = [];
+
+    function getData(){
+      var len = height.length;
+      for(var i = 0 ; i < len ; i++){
+        BMI[i] = weight[i] / Math.pow((height[i] / 100),2);
+        BMI[i] = Number.parseFloat(BMI[i]).toFixed(2);
+        console.log(weight[i],height[i],BMI[i],typeof(BMI[i]));
+      }
+    }
+    getData();
+
+    
+  </script>
+</body>
+</html>
