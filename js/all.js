@@ -11,11 +11,15 @@ var list = document.querySelector('.bmiList');
 var submitBtn = document.querySelector('.submitBtn');
 var resetBtn = document.querySelector('.resetBtn');
 var result = document.querySelector('.bmiresult');
+// console.log('init data.height : '+ typeof(data.height));
+// console.log('init data.height : '+ data.height);
 // 從localstorage拿資料
-data.height = JSON.parse(localStorage.getItem('height'));
-data.weight = JSON.parse(localStorage.getItem('weight'));
-data.BMI = JSON.parse(localStorage.getItem('BMI'));
-data.date = JSON.parse(localStorage.getItem('date'));
+data.height = JSON.parse(localStorage.getItem('height')) || [];
+data.weight = JSON.parse(localStorage.getItem('weight')) || [];
+data.BMI = JSON.parse(localStorage.getItem('BMI')) || [];
+data.date = JSON.parse(localStorage.getItem('date')) || [];
+// console.log('拿資料庫後的 data.height : '+ typeof(data.height));
+// console.log('拿資料庫後的 data.height : '+ data.height);
 
 function updateData() {
   var len = data.height.length;
@@ -29,6 +33,7 @@ function updateData() {
   }
   // console.log(str);
   list.innerHTML = str;
+
   // 更新資料進localstorage
   localStorage.setItem('height', JSON.stringify(data.height));
   localStorage.setItem('weight', JSON.stringify(data.weight));
@@ -43,6 +48,10 @@ list.addEventListener('click', deleteList);
 function calcBmi() {
   var weight = input_weight.value;
   var height = input_height.value;
+  console.log('weight:'+typeof(weight)+' height:'+typeof(height));
+  console.log('calcBmi : data.weight :'+typeof(data.weight));
+  
+  
   // 簡易驗證
   if (weight === "" || height === "") {
     alert("您的資料輸入不完整！");
@@ -120,7 +129,7 @@ function deleteList(e) {
   var current = e.target.nodeName;
   if (current !== 'A') { return };
   var currentnum = e.target.dataset.number;
-  console.log(current, currentnum);
+  // console.log(current, currentnum);
   data.weight.splice(currentnum, 1);
   data.height.splice(currentnum, 1);
   data.BMI.splice(currentnum, 1);
